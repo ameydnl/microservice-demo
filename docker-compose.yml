@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  account:
+    image: meydanal/account:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - meydanal-network
+  loan:
+    image: meydanal/loan:latest
+    ports:
+      - "8090:8090"
+    networks:
+      - meydanal-network
+  card:
+    image: meydanal/card:latest
+    ports:
+      - "9000:9000"
+    networks:
+      - meydanal-network
+networks:
+  meydanal-network:
+
