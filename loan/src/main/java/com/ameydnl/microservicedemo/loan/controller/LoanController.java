@@ -23,7 +23,7 @@ public class LoanController {
     private final LoanRepository loanRepository;
     private final LoanServiceConfig loanServiceConfig;
 
-    @PostMapping("/loans")
+    @PostMapping("/my-loan-list")
     public List<Loan> getLoansDetails(@RequestBody Customer customer) {
         List<Loan> loans = loanRepository.findByCustomerIdOrderByStartDtDesc(customer.getCustomerId());
         if (loans != null) {

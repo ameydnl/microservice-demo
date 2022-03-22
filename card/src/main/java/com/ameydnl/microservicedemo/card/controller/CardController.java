@@ -24,7 +24,7 @@ public class CardController {
     private final CardRepository cardRepository;
     private final CardServiceConfig cardServiceConfig;
 
-    @PostMapping("/cards")
+    @PostMapping("/my-card-list")
     public List<Card> getCardDetails(@RequestBody Customer customer) {
         List<Card> cards = cardRepository.findByCustomerId(customer.getCustomerId());
         if (cards != null) {
