@@ -10,7 +10,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,11 +34,7 @@ public class AccountController {
     public Account getAccountDetails(@RequestBody Customer customer) {
 
         Account account = accountRepository.findByCustomerId(customer.getCustomerId());
-        if (account != null) {
-            return account;
-        } else {
-            return null;
-        }
+        return account;
 
     }
 
@@ -66,7 +61,7 @@ public class AccountController {
         return customerDetails;
     }
 
-    public CustomerDetail myCustomerDetailsFallBack(@RequestBody Customer customer) {
+    private CustomerDetail myCustomerDetailsFallBack(Customer customer, Throwable t) {
         Account account = accountRepository.findByCustomerId(customer.getCustomerId());
         List<Loan> loans = loanFeignClient.getLoanDetail(customer);
 
