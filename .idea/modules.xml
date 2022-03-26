@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/card/card.iml" filepath="$PROJECT_DIR$/card/card.iml" />
       <module fileurl="file://$PROJECT_DIR$/configserver/configserver.iml" filepath="$PROJECT_DIR$/configserver/configserver.iml" />
       <module fileurl="file://$PROJECT_DIR$/eurekaserver/eurekaserver.iml" filepath="$PROJECT_DIR$/eurekaserver/eurekaserver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gatewayserver/gatewayserver.iml" filepath="$PROJECT_DIR$/gatewayserver/gatewayserver.iml" />
       <module fileurl="file://$PROJECT_DIR$/loan/loan.iml" filepath="$PROJECT_DIR$/loan/loan.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/microservice-demo.iml" filepath="$PROJECT_DIR$/.idea/microservice-demo.iml" />
     </modules>

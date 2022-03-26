@@ -25,6 +25,7 @@ public class LoanController {
 
     @PostMapping("/my-loan-list")
     public List<Loan> getLoansDetails(@RequestBody Customer customer) {
+        System.out.println("Loan service invoked.");
         List<Loan> loans = loanRepository.findByCustomerIdOrderByStartDtDesc(customer.getCustomerId());
         if (loans != null) {
             return loans;
