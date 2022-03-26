@@ -3,7 +3,6 @@ package com.ameydnl.gatewayserver.filters;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.annotation.Order;
@@ -15,9 +14,9 @@ import reactor.core.publisher.Mono;
 @Order(1)
 @Component
 @RequiredArgsConstructor
-public class TraceFilter implements GlobalFilter {
+public class TraceFilterCustom implements GlobalFilter {
 
-	private static final Logger logger = LoggerFactory.getLogger(TraceFilter.class);
+	private static final Logger logger = LoggerFactory.getLogger(TraceFilterCustom.class);
 
 	private final FilterUtility filterUtility;
 

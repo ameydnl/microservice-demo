@@ -11,6 +11,8 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +21,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 public class AccountController {
+
+    private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 
     private final AccountRepository accountRepository;
 
@@ -48,6 +52,7 @@ public class AccountController {
     //@CircuitBreaker(name = "detailsForCustomerSupportApp", fallbackMethod = "myCustomerDetailsFallBack")
     @Retry(name = "retryForCustomerDetails", fallbackMethod = "myCustomerDetailsFallBack")
     public CustomerDetail myCustomerDetails(@RequestHeader("microservicedemo-correlation-id") String correlationid, @RequestBody Customer customer) {
+        logger.info("myCustomerDetails() method started");
         Account account = accountRepository.findByCustomerId(customer.getCustomerId());
         List<Loan> loans = loanFeignClient.getLoanDetail(correlationid, customer);
         List<Card> cards = cardFeignClient.getCardDetail(correlationid, customer);
@@ -57,6 +62,7 @@ public class AccountController {
         customerDetails.setLoans(loans);
         customerDetails.setCards(cards);
 
+        logger.info("myCustomerDetails() method ended");
         return customerDetails;
     }
 
